@@ -1,7 +1,83 @@
-<mvc:View controllerName="riot.app.controller.Main"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
+<mvc:View
+    controllerName="riot.app.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <content>
+            <Panel
+                headerText="Beschwörer suchen"
+                expandable="true"
+                expanded="true"
+            >
+                <VBox>
+                    <Button
+                        text="Suchen"
+                        press="onSearch"
+                    />
+                    <Input
+                        id="summonerID"
+                        placeholder="{i18n>placeholderInput}"
+                        description="{i18n>summoner}"
+                    />
+                    <HBox>
+                        <Label
+                            text="{i18n>Level}:"
+                            class="sapUiSmallMargin"
+                        />
+                        <Label
+                            text="{/AccountInfo/summonerLevel}"
+                            class="sapUiSmallMargin"
+                        />
+                    </HBox>
+                </VBox>
+            </Panel>
+            <Panel
+                headerText="Ranked Stats"
+                expandable="true"
+                expanded="true"
+            >
+                <Table items="{/RankInfo}">
+                    <columns>
+                        <Column>
+                            <Label text="Beschwörer" />
+                        </Column>
+                        <Column>
+                            <Label text="Queue" />
+                        </Column>
+                        <Column>
+                            <Label text="Rank" />
+                        </Column>
+                        <Column>
+                            <Label text="Division" />
+                        </Column>
+                        <Column>
+                            <Label text="Wins" />
+                        </Column>
+                        <Column>
+                            <Label text="Losses" />
+                        </Column>
+                        <Column>
+                            <Label text="winRate" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <Label text="{summonerName}" />
+                            <Label text="{queueType}" />
+                            <Label text="{tier}" />
+                            <Label text="{rank}" />
+                            <Label text="{wins}" />
+                            <Label text="{losses}" />
+                            <ProgressIndicator percentValue="{winRate}" displayValue="{winRate}%" state="Success"  showValue="true" />
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </Panel>
+        </content>
     </Page>
 </mvc:View>
